@@ -1,16 +1,22 @@
 import { TestBed } from '@angular/core/testing';
 import { RouterTestingModule } from '@angular/router/testing';
 import { AppComponent } from './app.component';
+import { AuthService } from './auth.service';
 
+const MockAuthService = {
+  logout: () => {},
+  isLoggedIn: () => true,
+  loadUserProfile: () => ({}),
+  login: () => {}
+};
 describe('AppComponent', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       imports: [
         RouterTestingModule
       ],
-      declarations: [
-        AppComponent
-      ],
+      declarations: [AppComponent],
+      providers: [{ provide: AuthService, useValue: MockAuthService }]
     }).compileComponents();
   });
 
